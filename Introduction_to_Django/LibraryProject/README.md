@@ -1,1 +1,1 @@
-"#Created django project LibraryProject"
+"#created django project LibraryProject"
