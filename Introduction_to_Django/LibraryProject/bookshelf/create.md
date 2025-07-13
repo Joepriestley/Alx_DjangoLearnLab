@@ -1,6 +1,6 @@
 
-""""
-create first book instance
-"""
+# Create a Book instance with the given title, author, and publication year
 from bookshelf.models import Book
- bookA =Book(title="In the Chest of a Woman", author="Efo Kwodwo Mawugbe", publication_year= 2006)
+ bookA =Book(title="1984", author="George Orwell", publication_year= 1949)
+# Expected Output:
+# A Book instance is successfully created with the provided attributes
