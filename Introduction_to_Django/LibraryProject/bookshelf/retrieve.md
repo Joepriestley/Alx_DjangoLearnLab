@@ -1,6 +1,6 @@
 # Query all attributs of Book instance 
 from bookshelf.models import Book
-Book.objects.all()
+Book.objects.get(title="1984")
 # Expected Output:
-# <QuerySet [<Book: Book object (1)>]>
+# <Book: Book object (2)>
 
