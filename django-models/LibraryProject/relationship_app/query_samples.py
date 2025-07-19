@@ -1,5 +1,14 @@
 from relationship_app.models import  Book,Librarian, Library, Author
-
+# Query all books by a specific author
 book=Book.objects.all(author="George Orwell")
 
-library = Library.objects.
+# Listing all books in a library.
+library = Library.objects.get(name="libraryname")
+library.books.objects.all()
+
+# Retrieving the librarian for a library.
+library_name= Library.objects.get(name="lib_name")
+library_name.librarian
+
+#Or
+# Librarian.objects.get(name="name", library_name="lib_name")
