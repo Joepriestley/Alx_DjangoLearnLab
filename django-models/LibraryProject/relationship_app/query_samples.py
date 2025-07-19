@@ -3,7 +3,7 @@ from relationship_app.models import  Book,Librarian, Library, Author
 book=Book.objects.all(author="George Orwell")
 
 # Listing all books in a library.
-library = Library.objects.get(name="library_name")
+library = Library.objects.get(name=library_name)
 library.books.all()
 
 # Retrieving the librarian for a library.
