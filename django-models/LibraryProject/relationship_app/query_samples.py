@@ -4,7 +4,7 @@ book=Book.objects.all(author="George Orwell")
 
 # Listing all books in a library.
 library = Library.objects.get(name="libraryname")
-library.books.objects.all()
+library.books.all()
 
 # Retrieving the librarian for a library.
 library_name= Library.objects.get(name="lib_name")
