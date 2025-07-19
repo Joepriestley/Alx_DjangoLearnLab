@@ -7,8 +7,7 @@ library = Library.objects.get(name="library_name")
 library.books.all()
 
 # Retrieving the librarian for a library.
-library_name= Library.objects.get(name="lib_name")
-library_name.librarian
+library.librarian
 
 #Or
 # Librarian.objects.get(name="name", library_name="lib_name")
