@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Book,Author,Librarian,Library
+from .models import Book,Author,Librarian
 from django.views.generic import DetailView,TemplateView
-
+from .models import Library
 
 
 # Create your views here.
