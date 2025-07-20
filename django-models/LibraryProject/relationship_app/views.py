@@ -6,7 +6,7 @@ from .models import Book,Author,Librarian,Library
 def book_list(request):
     books= Book.objects.all()
     context={'book_list':books}
-    return render(request, context)
+    return render(request, 'relationship_app/list_books.html',context)
     
     
     
