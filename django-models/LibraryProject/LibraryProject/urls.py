@@ -17,13 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path,include
-from relationship_app.views import RegisterView
+from relationship_app.views import register
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('relationship_app/', include('django.contrib.urls')),
     path('relationship_app/profile/',TemplateView.as_view(template_name='relationship_app/profile.html'), name='profile'),
-    path('signup/',RegisterView.as_view(), name='templates/registration/register.html')
+    path('signup/',register, name='templates/registration/register.html')
     
 ]
