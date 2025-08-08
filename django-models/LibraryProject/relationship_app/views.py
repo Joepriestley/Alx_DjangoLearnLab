@@ -22,10 +22,17 @@ class LibraryDetailView(DetailView):
     template_name = 'relationship_app/library_detail.html'
 
 #CBV FOR USER REGISTRATION
-class SignUp(CreateView):
+class RegisterView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/register.html'
+    
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    
+class CustomLogoutView(LogoutView):
+    template_name = 'registration/logout.html'
+
  
 
     
