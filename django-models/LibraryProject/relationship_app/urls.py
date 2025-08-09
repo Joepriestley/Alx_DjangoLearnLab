@@ -8,7 +8,7 @@ Urlspatterns=[
     path('login/',LoginView.as_view(template_name='registration/login.html'),name='login'),
     path('logout/', LogoutView.as_view(template_name='registration/logout.html'),name='logout'),
     path('register/', views.register, name='register'),
-    
-    path('admin/',views.admin_view,name='admin_view')
+    path('admin/',views.admin_view,name='admin_view'),
+    path('member' views.member_vies, name='member_view')
   
 ]

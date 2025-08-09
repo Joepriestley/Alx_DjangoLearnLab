@@ -25,9 +25,33 @@ def is_admin(user):
 #role checking function for admin role with passes_test decorator 
 @user_passes_test(is_admin,login_url='login',redirect_field_name=None)
 def admi_view(request):
-    return render(request,'admin_view.html')
+    return render(request,'relationship_app/admin_view.html')
 
+#role checking function for Librarian 
+def is_librarian(user):
+    if hasattr(user, 'role'):
+        return user.role =='librarian'
+    if hasattr(user,'profile'):
+        return user.profile.role =='librarian'
+    
+#check for it to pass test
+@user_passes_test(is_librarian, login_url='login',redirect_field_name =None)
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view')
 
+#role checking function for member
+def is_member(user):
+    
+    if hasattr(user,'role'):
+        user.role =='member'
+    if hasattr(user, 'profie'):
+        return user.profile.role == 'member'
+#check for will be 
+
+@user_passes_test(is_member, login_url='login',redirect_field_name='None')
+def member_view(request):
+    return render(request,'relationship_app/member_view.html')
+        
 
 # Create your views here.
 def list_books(request):
