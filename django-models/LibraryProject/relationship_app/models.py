@@ -3,13 +3,19 @@ from django.contrib.auth.models import User
 
 
 
-#creating  user with built-in User model
-user =User.objects.create_user('joseph','joeamonoo1114@gmail.com', 'priestleyjoe1')
+#Extending the User model using the 1to1 method
+class UserProfile(models.Model):
+    ROLE_CHOICES=(
+        ('admin','Admin'),
+        ('librarian','Librarian'),
+        ('member','Member')
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length= 30, choices=ROLE_CHOICES, default='member')
+    
+    def __str__(self):
+        return f"{self.user.username}, ({self.role})"
 
-
-#Retrieve user 
-user=User.objects.get(username="joseph")
-# Create your models here.
 class Author(models.Model):
     name =models.CharField(max_length=100)
 
