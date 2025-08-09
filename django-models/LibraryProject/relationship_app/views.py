@@ -37,7 +37,7 @@ def is_librarian(user):
 #check for it to pass test
 @user_passes_test(is_librarian, login_url='login',redirect_field_name =None)
 def librarian_view(request):
-    return render(request, 'relationship_app/librarian_view')
+    return render(request, 'relationship_app/librarian_view.html')
 
 #role checking function for member
 def is_member(user):
