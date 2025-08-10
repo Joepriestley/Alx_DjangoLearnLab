@@ -9,6 +9,9 @@ Urlspatterns=[
     path('logout/', LogoutView.as_view(template_name='registration/logout.html'),name='logout'),
     path('register/', views.register, name='register'),
     path('admin/',views.admin_view,name='admin_view'),
-    path('member' views.member_vies, name='member_view')
+    path('member/' views.member_vies, name='member_view'),
+    path('book/<int:pk>/edit', views.can_change_book, name='change_book'),
+    path('book/add',views.can_add_book, name ='add_book'),
+    path('book/<int:pk>/delete', views.can_delete_book, name ='delete_book'),
   
 ]

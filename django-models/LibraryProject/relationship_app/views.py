@@ -2,8 +2,8 @@
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import user_passes_test, permission_required
+from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse_lazy
 from .models import Book,Author,Librarian
 from django.views.generic.detail import DetailView
@@ -58,6 +58,31 @@ def list_books(request):
     books= Book.objects.all()
     context={'book_list':books}
     return render(request, 'relationship_app/list_books.html',context)
+
+#checking for permission to add, edit ,change or delete book
+@permission_required('relationship_app.can_add_book',raise_exception=True)
+def can_add_book(request):
+     if request.method=='POST':
+        #add logic here 
+        pass
+    
+        return render(request, 'relationship_app/add_book.html')
+
+@permission_required('relationship_app.can_change_book', raise_exception = True)
+def can_change_book(request, pk):
+    book= get_object_or_404(Book,pk=pk)
+    if request.method=='POST':
+        #add logic here 
+        pass
+    return render(request,'relationship_app/edit_book.html', {'book':book})
+
+@permission_required('relationship_app.can_delete_book', raise_exception= True)
+def can_delete_book(request, pk):
+    book =get_object_or_404(Book,pk=pk)
+    if request.method=='POST':
+        book.delete()
+    return redirect('book_list')
+
 #class based view to render books in library
 class LibraryDetailView(DetailView):
     model= Library
