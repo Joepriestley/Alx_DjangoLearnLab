@@ -10,8 +10,8 @@ Urlspatterns=[
     path('register/', views.register, name='register'),
     path('admin/',views.admin_view,name='admin_view'),
     path('member/' views.member_vies, name='member_view'),
-    path('book/<int:pk>/edit', views.can_change_book, name='change_book'),
-    path('book/add',views.can_add_book, name ='add_book'),
-    path('book/<int:pk>/delete', views.can_delete_book, name ='delete_book'),
+    path('edit_book/<int:pk>/', views.can_change_book, name='change_book'),
+    path('add_book/',views.can_add_book, name ='add_book'),
+    path('delete_book/<int:pk>/', views.can_delete_book, name ='delete_book'),
   
 ]
