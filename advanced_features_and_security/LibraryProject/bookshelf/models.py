@@ -9,4 +9,4 @@ class Book(models.Model):
     
 class CustomUser(AbstractUser):
     date_of_birth= models.DateField()
-    profile_image =models.ImageField()
+    profile_photo =models.ImageField()
