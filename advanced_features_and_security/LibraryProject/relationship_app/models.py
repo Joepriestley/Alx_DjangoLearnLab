@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import User
 
 
 
@@ -15,11 +15,6 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return f"{self.user.username}, ({self.role})"
-
-
-class CustomUser(AbstractUser):
-    date_of_birth= models.DateField()
-    profile_image =models.ImageField()
     
 class Author(models.Model):
     name =models.CharField(max_length=100)
