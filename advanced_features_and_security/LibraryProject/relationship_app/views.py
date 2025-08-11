@@ -25,7 +25,7 @@ def is_admin(user):
     return False
 #role checking function for admin role with passes_test decorator 
 @user_passes_test(is_admin,login_url='login',redirect_field_name=None)
-def admi_view(request):
+def admin_view(request):
     return render(request,'relationship_app/admin_view.html')
 
 #role checking function for Librarian 
