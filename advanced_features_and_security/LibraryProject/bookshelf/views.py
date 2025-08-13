@@ -3,6 +3,12 @@ from django.shortcuts import render,get_object_or_404
 
 
 # Create your views here.
+from .models import Book
+
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'books': books})
+
 @permission_required('bookshelf.can_create' , raise_exception=True)
 def can_create(request):
     #logic here 
