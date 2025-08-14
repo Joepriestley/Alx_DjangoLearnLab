@@ -25,8 +25,9 @@ SECRET_KEY = "django-insecure-aazf*nrbe0put0$7q)!ti_^=*zn2wh+g8pm31&8$ct-c+z85fz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+
+ALLOWED_HOSTS = ["bookshelf.com", "www.yourdomain.com"]  # Required when DEBUG=False
 
 
 
@@ -52,6 +53,32 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# --- HTTPS / cookies ---
+
+SECURE_SSL_REDIRECT = True     #Force HTTPS
+SESSION_COOKIE_SECURE = True    #Cookies only via HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True  # JS can’t read session cookie
+CSRF_COOKIE_HTTPONLY = True     # JS can’t read CSRF cookie (Django 4.1+)
+
+# SameSite protects against CSRF via third-party contexts
+SESSION_COOKIE_SAMESITE= "lax"  # Use "Strict" if you never need cross-site embeds
+CSRF_COOKIE_SAMESITE ="lax"
+
+# --- Browser protections ---
+SECURE_CONTENT_TYPE_NOSNIFF = True          # Sends X-Content-Type-Options: nosniff
+X_FRAME_OPTIONS = "DENY"                    # Or "SAMEORIGIN" if you need iframes from same site
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
+# --- HSTS (enable only when you’re sure HTTPS is correct & permanent) ---
+SECURE_HSTS_SECONDS = 31536000              # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True                  # Submit to HSTS preload list later
+
+# If you’re behind a proxy/Load Balancer that terminates TLS:
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
 ROOT_URLCONF = "LibraryProject.urls"
 
@@ -92,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator","OPTIONS": {"min_length":10},
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
