@@ -62,6 +62,7 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True  # JS can’t read session cookie
 CSRF_COOKIE_HTTPONLY = True     # JS can’t read CSRF cookie (Django 4.1+)
 
+SECURE_BROWSER_XSS_FILTER= True #Enables browser's built-in cross site scripting protection
 # SameSite protects against CSRF via third-party contexts
 SESSION_COOKIE_SAMESITE= "lax"  # Use "Strict" if you never need cross-site embeds
 CSRF_COOKIE_SAMESITE ="lax"
