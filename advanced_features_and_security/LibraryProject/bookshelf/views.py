@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render,get_object_or_404
-
+from django.db.models import Q
 
 # Create your views here.
 from .models import Book
@@ -32,3 +32,13 @@ def can_view(request):
     #logic here 
     pass
     return render(request, 'bookshelf/view.html')
+
+
+
+
+def search_books(request):
+    q = request.GET.get("q", "").strip()
+    qs = Book.objects.none()
+    if q:
+        qs = Book.objects.filter(Q(title__icontains=q) | Q(author__icontains=q))
+    return render(request, "bookshelf/search_results.html", {"books": qs, "q": q})
