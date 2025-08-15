@@ -80,8 +80,22 @@ SECURE_HSTS_PRELOAD = True                  # Submit to HSTS preload list later
 # If you’re behind a proxy/Load Balancer that terminates TLS:
 # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+#django-content security policy
+#reduces XSS by controlling which sources can load scripts, styles, images, fonts, etc.
 
+MIDDLEWARE.insert(1,"csp.middleware.CSPMiddleware")
+#Minimum safe policy—tighten as needed
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'",)  # add trusted CDNs if you use them, e.g. "cdn.jsdelivr.net"
+CSP_STYLE_SRC = ("'self'", "fonts.googleapis.com")  # if using Google Fonts CSS
+CSP_FONT_SRC = ("'self'", "fonts.gstatic.com")
+CSP_IMG_SRC = ("'self'", "data:")
+CSP_CONNECT_SRC = ("'self'",)
+CSP_FRAME_ANCESTORS = ("'none'",)  # aligns with X_FRAME_OPTIONS=DENY
 ROOT_URLCONF = "LibraryProject.urls"
+
+CSP_INCLUDE_NOCES_IN ["script-src"]
+
 
 TEMPLATES = [
     {
