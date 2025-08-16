@@ -1,14 +1,24 @@
+
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from django.db.models import Q
-from .forms import  ExampleForm"
+from .forms import  ExampleForm
 from .models import Book
 # Create your views here.
 
-def create_book('request'):
-if request
+def create_book(request):
+    if request.method =="POST":
+        form= ExampleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')
+        
+    else:
+        form = ExampleForm()
+    return render(request,'bookshelf/create_book.html', {'form':form})
 
 def book_list(request):
+
     books = Book.objects.all()
     return render(request, 'bookshelf/book_list.html', {'books': books})
 
@@ -35,8 +45,6 @@ def can_view(request):
     #logic here 
     pass
     return render(request, 'bookshelf/view.html')
-
-
 
 
 def search_books(request):
