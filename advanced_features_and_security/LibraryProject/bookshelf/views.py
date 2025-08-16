@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render,get_object_or_404, redirect
 from django.db.models import Q
-from .forms import  ExampleForm
+from .forms import ExampleForm
 from .models import Book
 # Create your views here.
 
