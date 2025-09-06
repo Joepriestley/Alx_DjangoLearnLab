@@ -12,7 +12,6 @@ def create_book(request):
         if form.is_valid():
             form.save()
             return redirect('book_list')
-        
     else:
         form = ExampleForm()
     return render(request,'bookshelf/create_book.html', {'form':form})

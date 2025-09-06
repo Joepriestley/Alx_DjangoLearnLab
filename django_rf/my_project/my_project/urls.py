@@ -1,5 +1,5 @@
 """
-URL configuration for LibraryProject project.
+URL configuration for my_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,8 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, 
+from rest_framework.routers import DefaultRouter
+from django.urls import path,include
+from .views import BookAPIView
 
+router= DefaultRouter()
+router.register(r"my_app",BookAPIView, name="book")
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("book/",include("my_app.urls")),
+    path("apiview/", include("router.urls"))
 ]
