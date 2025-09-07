@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,6 +52,16 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+#Rest framework setup
+REST_FRAMEWORK={
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES":[
+        "rest_framework.permissions.AllowAny"
+    ]
+}
+
 ROOT_URLCONF = "social_media_api.urls"
 
 TEMPLATES = [
@@ -70,6 +80,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "social_media_api.wsgi.application"
+
+#Custom User 
+USER_MODEL_AUTH = 'accounts.UserCustom'
+
 
 
 # Database
@@ -117,7 +131,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+MEDIA_URL="/media/"
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 STATIC_URL = "static/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
